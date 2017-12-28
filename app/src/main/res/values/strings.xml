@@ -1,0 +1,16 @@
+<resources>
+  <string name="app_name">聆栋寻接</string>
+
+  <string name="menu_action_search">搜索</string>
+  <string name="menu_action_filter">过滤</string>
+  <string name="menu_action_scan">扫一扫</string>
+
+  <string name="menu_nav_time_line">时间线</string>
+  <string name="menu_nav_like">喜欢</string>
+  <string name="menu_nav_mine">我的</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+
+  <string name="transition_search_back" translatable="false">transition_search_back</string>
+</resources>

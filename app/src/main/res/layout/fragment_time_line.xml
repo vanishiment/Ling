@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.plant.ling.TimeLineFragment"
+    >
+
+  <android.support.v4.widget.SwipeRefreshLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/time_line_swipe_refresh_layout">
+
+    <com.plant.ling.LingRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/time_line_recycler_view"/>
+
+  </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>

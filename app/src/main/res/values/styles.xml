@@ -1,0 +1,42 @@
+<resources>
+
+  <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="preferenceTheme">@style/MaterialPreferenceTheme</item>
+    <item name="actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="android:actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:fontFamily">@font/product_family</item>
+  </style>
+
+  <style name="MaterialPreferenceTheme" parent="PreferenceThemeOverlay.v14.Material">
+    <item name="android:fadeScrollbars">true</item>
+    <item name="android:scrollbars">vertical</item>
+    <item name="android:scrollbarFadeDuration">1</item>
+    <item name="android:background">@color/colorBaseBackground</item>
+    <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+    <item name="android:textColorSecondary">@color/colorSecondaryText</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+  <style name="Widget.Ling" parent="android:Widget">
+
+  </style>
+
+  <style name="Widget.Ling.Toolbar" parent="Widget.AppCompat.Toolbar">
+    <item name="android:fontFamily">@font/product_sans_italic</item>
+  </style>
+
+</resources>
