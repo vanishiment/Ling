@@ -1,6 +1,7 @@
-package com.plant.ling;
+package com.plant.ling.ui.like;
 
-import android.view.View;
+import com.plant.ling.ui.base.AbsLazyFragment;
+import com.plant.ling.R;
 
 public class LikeFragment extends AbsLazyFragment {
 

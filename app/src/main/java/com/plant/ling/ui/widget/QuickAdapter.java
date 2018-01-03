@@ -1,4 +1,4 @@
-package com.plant.ling;
+package com.plant.ling.ui.widget;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -35,6 +35,10 @@ public abstract class QuickAdapter<T> extends RecyclerView.Adapter<QuickAdapter.
 
   @Override public int getItemCount() {
     return mDataList == null ? 0 : mDataList.size();
+  }
+
+  public void setDataList(List<T> dataList){
+    this.mDataList = dataList;
   }
 
   public static class VH extends RecyclerView.ViewHolder {

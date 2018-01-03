@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.plant.ling;
+package com.plant.ling.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

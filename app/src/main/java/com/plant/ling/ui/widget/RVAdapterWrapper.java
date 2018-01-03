@@ -1,4 +1,4 @@
-package com.plant.ling;
+package com.plant.ling.ui.widget;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

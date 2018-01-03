@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="colorPrimary">#2196F3</color>
-  <color name="colorPrimaryDark">#ffe0e0e0</color>
+  <color name="colorPrimaryDark">#FF9196FF</color>
   <color name="colorAccent">#03A9F4</color>
 
   <color name="colorNavBottomBackground">#FFFFFF</color>
@@ -15,4 +15,5 @@
   <color name="colorSecondaryText">#757575</color>
 
   <color name="divider">#1f000000</color> <!-- 12% black -->
+  <color name="divider_1">#ff03A9F4</color> <!-- 12% black -->
 </resources>

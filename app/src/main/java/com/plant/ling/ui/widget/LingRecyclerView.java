@@ -1,4 +1,4 @@
-package com.plant.ling;
+package com.plant.ling.ui.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.plant.ling;
+package com.plant.ling.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +22,7 @@ public abstract class AbsLazyFragment extends Fragment {
     View mRootView = inflater.inflate(getLayoutId(), container, false);
     mIsUIPrepared = true;
     mUnbinder = ButterKnife.bind(this,mRootView);
+    setupView();
     lazyLoad();
     return mRootView;
   }

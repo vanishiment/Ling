@@ -1,4 +1,4 @@
-package com.plant.ling;
+package com.plant.ling.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +22,16 @@ import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.plant.ling.R;
+import com.plant.ling.data.source.FeedsRepo;
+import com.plant.ling.data.source.local.FeedLocalDataSource;
+import com.plant.ling.data.source.remote.FeedRemoteDataSource;
+import com.plant.ling.ui.search.SearchActivity;
+import com.plant.ling.ui.like.LikeFragment;
+import com.plant.ling.ui.mine.MineFragment;
+import com.plant.ling.ui.timeline.FeedsPresenter;
+import com.plant.ling.ui.timeline.TimeLineFragment;
+import com.plant.ling.utils.schedulers.SchedulerProvider;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
   List<Fragment> mFragmentList;
   MainViewPagerAdapter mVPAdapter;
 
+  private TimeLineFragment mTimeLine;
+  private LikeFragment mLike;
+  private MineFragment mMine;
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -49,9 +63,19 @@ public class MainActivity extends AppCompatActivity {
   private void initFragments() {
     if (mFragmentList == null) {
       mFragmentList = new ArrayList<>();
-      mFragmentList.add(TimeLineFragment.newInstance());
-      mFragmentList.add(LikeFragment.newInstance());
-      mFragmentList.add(MineFragment.newInstance());
+    }
+    if (mTimeLine == null){
+      mTimeLine = TimeLineFragment.newInstance();
+      FeedsPresenter presenter = new FeedsPresenter(
+          FeedsRepo.get(FeedLocalDataSource.get(getApplicationContext()),FeedRemoteDataSource.get(getApplicationContext())),
+          mTimeLine,
+          SchedulerProvider.get());
+    }
+    if (mLike == null){
+      mLike = LikeFragment.newInstance();
+    }
+    if (mMine == null){
+      mMine = MineFragment.newInstance();
     }
   }
 
@@ -85,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_main, menu);
     return true;
   }

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.plant.ling.TimeLineFragment"
+    tools:context="com.plant.ling.ui.timeline.TimeLineFragment"
     >
 
   <android.support.v4.widget.SwipeRefreshLayout
@@ -10,10 +10,13 @@
       android:layout_height="match_parent"
       android:id="@+id/time_line_swipe_refresh_layout">
 
-    <com.plant.ling.LingRecyclerView
+    <com.plant.ling.ui.widget.LingRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/time_line_recycler_view"/>
+        android:id="@+id/time_line_recycler_view"
+        android:visibility="gone"/>
+
+    <include layout="@layout/state_view_layout"/>
 
   </android.support.v4.widget.SwipeRefreshLayout>
 

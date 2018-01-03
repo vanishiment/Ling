@@ -12,7 +12,7 @@
  * permissions and limitations under the License.
  */
 
-package com.plant.ling;
+package com.plant.ling.ui.widget;
 
 /**
  * A marker interface used by {@link android.support.v7.widget.RecyclerView.ItemDecoration}s to
