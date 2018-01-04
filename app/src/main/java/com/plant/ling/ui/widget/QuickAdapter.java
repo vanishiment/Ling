@@ -15,7 +15,7 @@ import java.util.List;
  */
 public abstract class QuickAdapter<T> extends RecyclerView.Adapter<QuickAdapter.VH> {
 
-  private List<T> mDataList;
+  public List<T> mDataList;
 
   public QuickAdapter(List<T> dataList) {
     this.mDataList = dataList;

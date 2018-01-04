@@ -81,25 +81,25 @@ public class TimeLineFragment extends AbsLazyFragment implements
   }
 
   @Override public void loadData() {
-    mPresenter.subscribe();
+
   }
 
   private void loadMore(){
-    mPresenter.loadMoreFeeds(true,30,30);
+    mPresenter.loadMoreFeeds(true,20,20);
   }
 
   @Override public void onRefresh() {
-    mPresenter.loadFeeds(false,0,30);
+    mPresenter.loadFeeds(false,0,20);
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    feedAdapter = new FeedAdapter(new ArrayList<>(0));
+    feedAdapter = new FeedAdapter(getActivity(),new ArrayList<>(0));
   }
 
   @Override public void onResume() {
     super.onResume();
-
+    mPresenter.subscribe();
   }
 
   @Override public void onPause() {

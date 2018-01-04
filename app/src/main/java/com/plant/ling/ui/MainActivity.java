@@ -23,7 +23,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.plant.ling.R;
-import com.plant.ling.data.source.FeedsRepo;
+import com.plant.ling.data.source.repo.FeedsRepo;
 import com.plant.ling.data.source.local.FeedLocalDataSource;
 import com.plant.ling.data.source.remote.FeedRemoteDataSource;
 import com.plant.ling.ui.search.SearchActivity;
@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
     if (mMine == null){
       mMine = MineFragment.newInstance();
     }
+    mFragmentList.clear();
+    mFragmentList.add(mTimeLine);
+    mFragmentList.add(mLike);
+    mFragmentList.add(mMine);
   }
 
   private void initView(Bundle savedInstanceState) {

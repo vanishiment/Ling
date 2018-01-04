@@ -60,4 +60,37 @@ public class Feed {
       this.sourceUrl = sourceUrl;
     }
   }
+
+  @Override public String toString() {
+    return "Feed{"
+        + "id="
+        + id
+        + ", title='"
+        + title
+        + '\''
+        + ", thumbnailUrl='"
+        + thumbnailUrl
+        + '\''
+        + ", desc='"
+        + desc
+        + '\''
+        + ", mediaSource="
+        + mediaSource
+        + ", detailUrl='"
+        + detailUrl
+        + '\''
+        + ", source='"
+        + source
+        + '\''
+        + ", type='"
+        + type
+        + '\''
+        + ", displayType="
+        + displayType
+        + ", weight="
+        + weight
+        + ", date="
+        + date
+        + '}';
+  }
 }

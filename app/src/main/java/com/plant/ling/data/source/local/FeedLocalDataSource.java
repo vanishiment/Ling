@@ -3,12 +3,12 @@ package com.plant.ling.data.source.local;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.content.Context;
 import com.plant.ling.data.model.Feed;
-import com.plant.ling.data.source.FeedDataSource;
+import com.plant.ling.data.source.datasource.IFeedDataSource;
 import com.plant.ling.data.source.local.db.LingDatabase;
 import io.reactivex.Flowable;
 import java.util.List;
 
-public class FeedLocalDataSource implements FeedDataSource{
+public class FeedLocalDataSource implements IFeedDataSource {
 
   private static FeedLocalDataSource INSTANCE;
 

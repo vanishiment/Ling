@@ -1,10 +1,10 @@
-package com.plant.ling.data.source;
+package com.plant.ling.data.source.datasource;
 
 import com.plant.ling.data.model.Feed;
 import io.reactivex.Flowable;
 import java.util.List;
 
-public interface FeedDataSource {
+public interface IFeedDataSource {
 
   Flowable<List<Feed>> getFeedList(int index,int limit);
 

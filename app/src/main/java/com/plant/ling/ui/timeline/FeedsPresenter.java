@@ -1,7 +1,7 @@
 package com.plant.ling.ui.timeline;
 
 import com.plant.ling.data.model.Feed;
-import com.plant.ling.data.source.FeedsRepo;
+import com.plant.ling.data.source.repo.FeedsRepo;
 import com.plant.ling.utils.schedulers.BaseSchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -28,7 +28,7 @@ public class FeedsPresenter implements FeedsContract.Presenter {
   }
 
   @Override public void subscribe() {
-    loadFeeds(false, 0, 30);
+    loadFeeds(false, 0, 20);
   }
 
   @Override public void unSubscribe() {
@@ -52,7 +52,7 @@ public class FeedsPresenter implements FeedsContract.Presenter {
       mFeedsRepo.refreshFeeds();
     }
     mCompositeDisposable.clear();
-    Disposable disposable = mFeedsRepo.getFeedList(index, limit)
+    Disposable disposable = mFeedsRepo.getFeedListNoDbCache(index, limit)
         .subscribeOn(mSchedulerProvider.io())
         .observeOn(mSchedulerProvider.ui())
         .subscribe(

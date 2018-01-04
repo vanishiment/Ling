@@ -1,30 +1,34 @@
-package com.plant.ling.data.source;
+package com.plant.ling.data.source.repo;
 
+import android.util.Log;
 import com.plant.ling.data.model.Feed;
+import com.plant.ling.data.source.datasource.IFeedDataSource;
 import io.reactivex.Flowable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FeedsRepo implements FeedDataSource {
+public class FeedsRepo implements IFeedDataSource {
+
+  private static final String TAG = "FeedsRepo";
 
   private static FeedsRepo INSTANCE;
 
-  private FeedDataSource mLocal;
-  private FeedDataSource mRemote;
+  private IFeedDataSource mLocal;
+  private IFeedDataSource mRemote;
 
   private Map<String,Feed> mCacheFeeds;
   private boolean mCacheIsDirty = false;
 
-  private FeedsRepo(FeedDataSource local, FeedDataSource remote) {
+  private FeedsRepo(IFeedDataSource local, IFeedDataSource remote) {
     this.mLocal = local;
     this.mRemote = remote;
   }
 
-  public static FeedsRepo get(FeedDataSource local, FeedDataSource remote){
+  public static FeedsRepo get(IFeedDataSource local, IFeedDataSource remote){
     if (INSTANCE == null){
       synchronized (FeedsRepo.class){
-        INSTANCE = new FeedsRepo(local, remote);
+        if (INSTANCE == null) INSTANCE = new FeedsRepo(local, remote);
       }
     }
     return INSTANCE;
@@ -95,6 +99,7 @@ public class FeedsRepo implements FeedDataSource {
   private Flowable<List<Feed>> getAndSaveRemoteFeeds(int index,int limit){
     return mRemote.getFeedList(index, limit)
         .flatMap(feeds -> Flowable.fromIterable(feeds).doOnNext(feed -> {
+          Log.e(TAG, "getAndSaveRemoteFeeds: " + feed.toString());
           mLocal.saveFeed(feed);
           mCacheFeeds.put(String.valueOf(feed.id),feed);
         }).toList().toFlowable())
