@@ -40,4 +40,7 @@
     <item name="android:fontFamily">@font/product_sans_italic</item>
   </style>
 
+  <style name="AppTheme.ProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+  </style>
+
 </resources>

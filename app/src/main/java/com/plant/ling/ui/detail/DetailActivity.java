@@ -92,6 +92,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     });
 
     mPB.setMax(100);
+    mPB.setProgressDrawable(getResources().getDrawable(R.drawable.progress_bar_drawable));
   }
 
   private void handleIntent(Intent intent) {

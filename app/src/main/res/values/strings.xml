@@ -104,4 +104,8 @@
     "when a user tries to pick up one of cards.\n\n"
   </string>
   <string name="action_settings">Settings</string>
+
+  <string name="transition_shot" translatable="false">shot</string>
+  <string name="transition_shot_title" translatable="false">shot_title</string>
+  <string name="transition_shot_background" translatable="false">shot_background</string>
 </resources>

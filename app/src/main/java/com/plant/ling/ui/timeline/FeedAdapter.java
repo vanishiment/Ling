@@ -1,26 +1,32 @@
 package com.plant.ling.ui.timeline;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.util.DiffUtil;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import com.plant.ling.R;
+import com.plant.ling.data.model.Feed;
 import com.plant.ling.ui.detail.DetailActivity;
 import com.plant.ling.ui.widget.QuickAdapter;
-import com.plant.ling.data.model.Feed;
 import com.plant.ling.utils.Objects;
+import com.plant.ling.utils.schedulers.SchedulerProvider;
+import io.reactivex.Observable;
+import java.util.Arrays;
 import java.util.List;
 
 public class FeedAdapter extends QuickAdapter<Feed> {
 
+  static final int REQUEST_CODE_VIEW_SHOT = 5407;
+
   private int dataVersion = 0;
 
-  private Context mContext;
+  private Activity mContext;
 
-  public FeedAdapter(Context context,List<Feed> dataList) {
+  public FeedAdapter(Activity context, List<Feed> dataList) {
     super(dataList);
     mContext = context;
   }
@@ -39,35 +45,37 @@ public class FeedAdapter extends QuickAdapter<Feed> {
     if (!TextUtils.isEmpty(data.title)) title.setText(data.title);
     if (!TextUtils.isEmpty(data.desc)) content.setText(data.desc);
 
-    holder.getView(R.id.feed_item_cl).setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        Intent intent = new Intent(mContext, DetailActivity.class);
-        intent.putExtra(DetailActivity.DETAIL_WEB_URL_ID,data.id);
-        intent.putExtra(DetailActivity.DETAIL_IMG_URL,data.thumbnailUrl);
-        intent.putExtra(DetailActivity.DETAIL_TITLE,data.title);
-        mContext.startActivity(intent);
-      }
+    holder.getView(R.id.feed_item_cl).setOnClickListener(v -> {
+      Intent intent = new Intent(mContext, DetailActivity.class);
+      intent.putExtra(DetailActivity.DETAIL_WEB_URL_ID, data.id);
+      intent.putExtra(DetailActivity.DETAIL_IMG_URL, data.thumbnailUrl);
+      intent.putExtra(DetailActivity.DETAIL_TITLE, data.title);
+      List<Pair<View, String>> pairList = Arrays.asList(Pair.create(v, mContext.getString(R.string.transition_shot)),
+          Pair.create(v, mContext.getString(R.string.transition_shot_background)));
+      ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mContext,
+          (Pair<View, String>[]) pairList.toArray());
+      mContext.startActivityForResult(intent, REQUEST_CODE_VIEW_SHOT, options.toBundle());
     });
   }
 
-  public void replaceData(List<Feed> feeds){
+  public void replaceData(List<Feed> feeds) {
     dataVersion++;
 
-    if (mDataList == null){
+    if (mDataList == null) {
       if (feeds == null) return;
       mDataList = feeds;
       notifyDataSetChanged();
-    }else if (feeds == null){
+    } else if (feeds == null) {
       int oldSize = mDataList.size();
       mDataList = null;
-      notifyItemRangeChanged(0,oldSize);
-    }else {
+      notifyItemRangeChanged(0, oldSize);
+    } else {
       final int startVersion = dataVersion;
       final List<Feed> oldItems = mDataList;
-      new AsyncTask<Void,Void,DiffUtil.DiffResult>(){
-
-        @Override protected DiffUtil.DiffResult doInBackground(Void... voids) {
-          return DiffUtil.calculateDiff(new DiffUtil.Callback() {
+      Observable.just("1")
+          .subscribeOn(SchedulerProvider.get().io())
+          .observeOn(SchedulerProvider.get().ui())
+          .map(s -> DiffUtil.calculateDiff(new DiffUtil.Callback() {
             @Override public int getOldListSize() {
               return oldItems.size();
             }
@@ -79,29 +87,31 @@ public class FeedAdapter extends QuickAdapter<Feed> {
             @Override public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
               Feed oldItem = oldItems.get(oldItemPosition);
               Feed newItem = feeds.get(newItemPosition);
-              return Objects.equals(oldItem.id,newItem.id) && Objects.equals(oldItem.detailUrl,newItem.detailUrl);
+              return Objects.equals(oldItem.id, newItem.id) && Objects.equals(oldItem.detailUrl,
+                  newItem.detailUrl);
             }
 
             @Override public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
               Feed oldItem = oldItems.get(oldItemPosition);
               Feed newItem = feeds.get(newItemPosition);
-              return Objects.equals(oldItem.desc,newItem.desc) && Objects.equals(oldItem.title,newItem.title);
+              return Objects.equals(oldItem.desc, newItem.desc) && Objects.equals(oldItem.title,
+                  newItem.title);
             }
-          });
-        }
-
-        @Override protected void onPostExecute(DiffUtil.DiffResult diffResult) {
-          if (startVersion != dataVersion) {
-            // ignore update
-            return;
-          }
-          mDataList = feeds;
-          diffResult.dispatchUpdatesTo(FeedAdapter.this);
-        }
-      }.execute();}
+          }))
+          .subscribe(
+              // onNext
+              diffResult -> {
+                if (startVersion != dataVersion) {
+                  // ignore update
+                  return;
+                }
+                mDataList = feeds;
+                diffResult.dispatchUpdatesTo(FeedAdapter.this);
+              });
+    }
   }
 
-  public void addData(List<Feed> feeds){
+  public void addData(List<Feed> feeds) {
     setDataList(feeds);
     notifyDataSetChanged();
   }

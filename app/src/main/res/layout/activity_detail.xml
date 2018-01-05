@@ -42,6 +42,7 @@
           app:layout_collapseMode="pin"
           app:contentInsetStart="0dp"
           app:contentInsetLeft="0dp"
+          app:contentInsetStartWithNavigation="0dp"
           app:navigationIcon="@drawable/ic_arrow_back_24dp"
           app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
