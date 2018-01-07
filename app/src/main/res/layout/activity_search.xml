@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.plant.ling.ui.search.SearchActivity"
     >
 
-</android.support.constraint.ConstraintLayout>
+  <FrameLayout
+      android:id="@+id/search_tool_bar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:theme="@style/SearchViewTheme"
+      android:background="@color/colorPrimary">
+
+    <FrameLayout
+        android:id="@+id/searchback_container"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
+        android:background="@android:color/transparent"
+        >
+
+      <ImageButton
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          app:srcCompat="@drawable/ic_arrow_back_24dp"
+          android:contentDescription="@null"
+          android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </FrameLayout>
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/padding_normal"
+        android:searchIcon="@null"
+        android:iconifiedByDefault="false"/>
+    
+  </FrameLayout>
+
+</FrameLayout>

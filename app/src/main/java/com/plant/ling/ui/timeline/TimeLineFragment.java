@@ -81,7 +81,7 @@ public class TimeLineFragment extends AbsLazyFragment implements
   }
 
   @Override public void loadData() {
-
+    mPresenter.subscribe();
   }
 
   private void loadMore(){
@@ -99,7 +99,7 @@ public class TimeLineFragment extends AbsLazyFragment implements
 
   @Override public void onResume() {
     super.onResume();
-    mPresenter.subscribe();
+
   }
 
   @Override public void onPause() {

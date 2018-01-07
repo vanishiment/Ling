@@ -10,6 +10,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
+    ndk{abiFilters "armeabi"}
   }
   buildTypes {
     release {
@@ -54,4 +55,6 @@ dependencies {
   implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
   implementation 'com.github.bumptech.glide:glide:4.4.0'
   annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+  implementation files('libs/tbs_sdk_thirdapp_v3.5.0.1004_43500.jar')
+  implementation 'com.tencent.bugly:crashreport:2.6.6'
 }

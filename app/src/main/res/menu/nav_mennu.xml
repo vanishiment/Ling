@@ -11,9 +11,9 @@
         android:title="@string/menu_nav_time_line" />
     <item
         android:id="@+id/menu_nav_action_like"
-        android:icon="@drawable/ic_like_24dp"
+        android:icon="@drawable/ic_explore_black_24dp"
         android:enabled="true"
-        android:title="@string/menu_nav_like" />
+        android:title="@string/menu_nav_explore" />
     <item
         android:id="@+id/menu_nav_action_mine"
         android:icon="@drawable/ic_mine_black_24dp"

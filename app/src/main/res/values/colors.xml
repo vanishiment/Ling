@@ -17,5 +17,8 @@
   <color name="divider">#1f000000</color> <!-- 12% black -->
   <color name="divider_1">#ff03A9F4</color> <!-- 12% black -->
 
+  <color name="scrim">#99323232</color>
+  <color name="background_dark">#ff333333</color>
 
+  <color name="transparent">#00000000</color>
 </resources>

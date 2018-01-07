@@ -1,6 +1,7 @@
 package com.plant.ling.ui.detail;
 
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,10 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import butterknife.BindView;
@@ -26,6 +23,10 @@ import com.plant.ling.data.source.local.FeedDetailLocalDataSource;
 import com.plant.ling.data.source.remote.FeedDetailRemoteDataSource;
 import com.plant.ling.data.source.repo.FeedDetailRepo;
 import com.plant.ling.utils.schedulers.SchedulerProvider;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 public class DetailActivity extends AppCompatActivity implements DetailContract.View{
 
@@ -42,6 +43,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
   private DetailPresenter mPresenter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
+    getWindow().setFormat(PixelFormat.TRANSLUCENT);
     super.onCreate(savedInstanceState);
     requestWindowFeature(Window.FEATURE_ACTION_MODE_OVERLAY);
     setContentView(R.layout.activity_detail);
@@ -87,7 +89,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     });
     mWebView.setOnLongClickListener(new View.OnLongClickListener() {
       @Override public boolean onLongClick(View v) {
-        return true;
+        return false;
       }
     });
 
